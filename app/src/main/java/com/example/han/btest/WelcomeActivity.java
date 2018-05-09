@@ -1,9 +1,12 @@
 package com.example.han.btest;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.MediaController;
+import android.widget.VideoView;
 
 public class WelcomeActivity extends AppCompatActivity {
 
@@ -16,7 +19,34 @@ public class WelcomeActivity extends AppCompatActivity {
 
         getSupportActionBar().hide();
 
-        mHandler.sendEmptyMessageDelayed(GOTO_MAIN_ACTIVITY, 2000); //2秒跳轉
+        VideoView videoView = (VideoView) this.findViewById(R.id.videoView);
+        MediaController mc = new MediaController(this);
+        videoView.setMediaController(mc);
+
+
+        //透過 url 播放
+        //videoView.setVideoURI(Uri .parse("http://www.test.123/testmovie.mp4"));
+
+        //透過 sdcard 路徑播放
+        //videoView.setVideoPath("/sdcard/testmovie.mp4");
+
+  /*其他 sdcard 路徑的範例，給大家參考
+  videoView.setVideoURI(
+   Uri.parse("file://" +
+   Environment.getExternalStoragePublicDirectory(
+   Environment.DIRECTORY_MOVIES) + "/testmovie.mp4"));
+  */
+
+
+        //本次用project下的目錄作為路徑來示範
+        videoView.setVideoURI(Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.star));
+
+
+        videoView.requestFocus();
+        videoView.start();
+
+
+        mHandler.sendEmptyMessageDelayed(GOTO_MAIN_ACTIVITY, 5000); //5秒跳轉
     }
     private static final int GOTO_MAIN_ACTIVITY = 0;
     private Handler mHandler = new Handler() {

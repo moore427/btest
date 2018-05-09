@@ -6,4 +6,9 @@
     android:layout_height="match_parent"
     tools:context=".WelcomeActivity">
 
+    <VideoView
+    android:id="@+id/videoView"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" />
+
 </android.support.constraint.ConstraintLayout>
