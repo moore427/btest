@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.MediaController;
 import android.widget.VideoView;
 
@@ -21,7 +22,10 @@ public class WelcomeActivity extends AppCompatActivity {
 
         VideoView videoView = (VideoView) this.findViewById(R.id.videoView);
         MediaController mc = new MediaController(this);
+        mc.setVisibility(View.INVISIBLE);
         videoView.setMediaController(mc);
+
+
 
 
         //透過 url 播放
@@ -39,14 +43,14 @@ public class WelcomeActivity extends AppCompatActivity {
 
 
         //本次用project下的目錄作為路徑來示範
-        videoView.setVideoURI(Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.star));
+        videoView.setVideoURI(Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.st1));
 
 
         videoView.requestFocus();
         videoView.start();
 
 
-        mHandler.sendEmptyMessageDelayed(GOTO_MAIN_ACTIVITY, 5000); //5秒跳轉
+        mHandler.sendEmptyMessageDelayed(GOTO_MAIN_ACTIVITY, 9000); //9秒跳轉
     }
     private static final int GOTO_MAIN_ACTIVITY = 0;
     private Handler mHandler = new Handler() {
